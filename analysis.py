@@ -168,9 +168,19 @@ div[data-testid="stTabs"] button {
 
 # ─── NLTK Downloads ────────────────────────────────────────────────────────────
 @st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner=False)
 def download_nltk():
-    for pkg in ['punkt', 'stopwords', 'wordnet', 'averaged_perceptron_tagger', 'omw-1.4', 'punkt_tab']:
-        nltk.download(pkg, quiet=True)
+    packages = [
+        'punkt',
+        'punkt_tab',
+        'stopwords',
+        'wordnet',
+        'omw-1.4',
+        'averaged_perceptron_tagger',
+        'averaged_perceptron_tagger_eng',
+    ]
+    for pkg in packages:
+        nltk.download(pkg, quiet=True, raise_on_error=False)
 
 download_nltk()
 
